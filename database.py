@@ -1,30 +1,6 @@
-import sqlite3, sys
-
-
-def img_to_bin(filename):
-    try:
-        fin = open(filename, "rb")
-        img = fin.read()
-        return sqlite3.Binary(img)
-    except IOError:
-        print("Error")
-        sys.exit(1)
-    finally:
-        if fin:
-            fin.close()
-
-
-def bin_to_img(data, name_of_file):
-    try:
-        fout = open(name_of_file, 'wb')
-        fout.write(data)
-
-    except IOError:
-        print('Error while writing')
-        sys.exit(1)
-    finally:
-        if fout:
-            fout.close()
+import sqlite3
+import sys
+from binimg import img_to_bin, bin_to_img
 
 
 class db:
@@ -45,7 +21,6 @@ class db:
             return self.cursor.fetchmany()
 
     def commit(self, description, img, name_of_table='images'):
-        # self.cursor.execute("INSERT INTO {} VALUES ({},{})".format(name_of_table, description, img))
         self.cursor.execute(
             "INSERT INTO " + name_of_table + " VALUES (:description,:img)",
             {'description': description, 'img': img})
