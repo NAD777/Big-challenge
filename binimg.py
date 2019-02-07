@@ -1,5 +1,5 @@
 import sys
-import sqlite3 as lite
+import sqlite3
 
 
 # Функция открытия изображения в бинарном режиме
@@ -7,7 +7,7 @@ def img_to_bin(filename):
     try:
         fin = open(filename, "rb")
         img = fin.read()
-        return img
+        return sqlite3.Binary(img)
     except IOError:
         print("Error")
         sys.exit(1)
