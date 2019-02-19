@@ -27,8 +27,3 @@ def bin_to_img(data, name_of_file):
     finally:
         if fout:
             fout.close()
-
-"""
-guide http://python-3.ru/page/sqlite-blob-to-image-example
-http://python-3.ru/page/sqlite-upload-image-in-database
-"""
